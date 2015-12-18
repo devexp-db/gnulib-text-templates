@@ -46,7 +46,15 @@ do
             data+=" %D%/$file "
             ;;
     esac
-    full_primaries=$full_primaries" ${dir}_$primary "
+
+    actual_primary=${dir}_$primary
+    case $full_primaries in
+      *\ $actual_primary\ *)
+        ;;
+      *)
+        full_primaries=$full_primaries" ${dir}_$primary "
+        ;;
+    esac
 done < <(grep -v '^#' < Makefile.ttinc.in)
 
 for i in $full_primaries
