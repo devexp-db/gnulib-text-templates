@@ -44,6 +44,10 @@ do
 include \$(srcdir)/$dir/$ttinc
 EXTRA_DIST += \$(srcdir)/$dir/$ttinc_in
 
+" >> "$target"
+done
+
+echo "
 noinst_DATA += \$(ttinc_genfiles_list)
 
 # Make sure this is not empty
@@ -55,7 +59,6 @@ noinst_DATA += \$(ttinc_genfiles_list)
 
 # CLEANFILES += \$(ttinc_genfiles_list)
 " >> "$target"
-done
 
 for dir in $subdirs
 do
