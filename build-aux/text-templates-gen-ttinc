@@ -24,6 +24,8 @@ ttinc=Makefile.ttinc
 subdirs=`cat .ttincdirs`
 
 echo "
+ttinc_genfiles =
+
 EXTRA_DIST += \
 	$target \
 	.ttincdirs \
@@ -37,10 +39,21 @@ Makefile.ttinc: .ttincdirs
 for dir in $subdirs
 do
     echo "
-    \$(srcdir)/$dir/$ttinc: \$(srcdir)/$dir/$ttinc_in
+\$(srcdir)/$dir/$ttinc: \$(srcdir)/$dir/$ttinc_in
 	\$(gen_makefile_inc) $dir > \$@
 include \$(srcdir)/$dir/$ttinc
 EXTRA_DIST += \$(srcdir)/$dir/$ttinc_in
+
+noinst_DATA += \$(ttinc_genfiles_list)
+
+# Make sure this is not empty
+\$(ttinc_genfiles_list): \$(ttinc_genfiles)
+	\$(AM_V_GEN)rm -rf \$(ttinc_genfiles_list) && \
+	for i in \$(ttinc_genfiles); do \
+	    echo \$\$i >> \$@ ; \
+	done
+
+# CLEANFILES += \$(ttinc_genfiles_list)
 " >> "$target"
 done
 

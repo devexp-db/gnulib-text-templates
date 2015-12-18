@@ -11,6 +11,7 @@ Depends-on:
 configure.ac:
 gl_TEXT_TPL_INIT
 gl_TEXT_TPL_SUBST([ac_aux_dir])
+gl_TEXT_TPL_SUBST([ttinc_genfiles_list], [.ttinc_genfiles])
 gl_TEXT_TPL_SUBST([gen_makefile_ttinc], [${ac_aux_dir}/text-templates-gen-ttinc])
 gl_TEXT_TPL_SUBST([gen_makefile_inc],   [${ac_aux_dir}/text-templates-gen])
 

@@ -81,5 +81,6 @@ do
     eval clean='" $clean $'"$i"' "'
 done
 echo "CLEANFILES += $clean"
+echo "ttinc_genfiles += $clean"
 
 echo "EXTRA_DIST += $files_in"
